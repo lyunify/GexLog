@@ -1,0 +1,121 @@
+{
+  "symbol": "SPY",
+  "as_of": "2026-11-10T23:10:28.834Z",
+  "market_open": false,
+  "price": {
+    "bid": 750.3,
+    "ask": 750.54,
+    "mid": 750.42,
+    "last": 750.42,
+    "last_update": "2026-11-10T23:10:28.834Z"
+  },
+  "volatility": {
+    "atm_iv": 15.12,
+    "hv_20": 22.27,
+    "hv_60": 14.79,
+    "vrp": null,
+    "skew_25d": null,
+    "iv_term_structure": null
+  },
+  "options_flow": {
+    "total_call_oi": 5920368,
+    "total_put_oi": 11365458,
+    "total_call_volume": 1656247,
+    "total_put_volume": 1708179,
+    "pc_ratio_oi": 1.92,
+    "pc_ratio_volume": 1.031,
+    "active_expirations": 34
+  },
+  "exposure": {
+    "net_gex": -8752130899,
+    "net_dex": null,
+    "net_vex": null,
+    "net_chex": null,
+    "gamma_flip": 759.980738848184,
+    "gamma_flip_status": "available",
+    "call_wall": 760,
+    "put_wall": 750,
+    "max_pain": 752,
+    "highest_oi_strike": 500,
+    "regime": "negative_gamma",
+    "interpretation": {
+      "gamma": "Dealers short gamma \u2014 moves amplified, trend following likely",
+      "vanna": null,
+      "charm": null
+    },
+    "hedging_estimate": null,
+    "zero_dte": null,
+    "top_strikes": null,
+    "oi_weighted_dte": 102.6
+  },
+  "macro": {
+    "vix": {
+      "value": 19.46,
+      "change": -0.46,
+      "change_pct": -2.31,
+      "as_of": "2026-11-10T21:15:01Z"
+    },
+    "vvix": {
+      "value": 96.63,
+      "change": -1.8,
+      "change_pct": -1.83,
+      "as_of": "2026-11-10T21:15:01Z"
+    },
+    "skew": {
+      "value": 151.12,
+      "change": 0.78,
+      "change_pct": 0.52,
+      "as_of": "2026-11-10T22:00:19Z"
+    },
+    "spx": {
+      "value": 7520.93,
+      "change": -29.01,
+      "change_pct": -0.38,
+      "as_of": "2026-11-10T22:00:31Z"
+    },
+    "move": {
+      "value": 92.4315,
+      "change": 6.45,
+      "change_pct": 7.5,
+      "as_of": "2026-11-10T21:17:30Z"
+    },
+    "vix_term_structure": {
+      "levels": {
+        "vix9d": 18.54,
+        "vix": 19.46,
+        "vix3m": 20.64,
+        "vix6m": 21.99
+      },
+      "near_slope_pct": 4.96,
+      "structure": "contango"
+    },
+    "vix_futures": {
+      "front_month": 20.64,
+      "spot": 19.46,
+      "spread": 1.18,
+      "basis_pct": 6.06,
+      "basis": "contango"
+    },
+    "fear_and_greed": {
+      "score": 33,
+      "rating": "fear"
+    }
+  },
+  "data_as_of": {
+    "node": "fa2",
+    "equity_feed": "2026-11-10T23:10:37.798Z",
+    "equity_options_feed": "2026-11-10T21:16:16Z",
+    "index_feed": "2026-11-10T21:14:31.28Z",
+    "index_options_feed": "2026-11-10T22:00:00Z",
+    "futures_feed": "2026-11-10T23:10:10.647Z",
+    "futures_options_feed": "2026-11-10T23:10:09.198Z",
+    "flow_feed": null,
+    "oi_feed": "2026-11-09T21:00:00Z",
+    "macro_feed": "2026-11-10T21:15:01Z"
+  },
+  "endpoint_version": "2026.09.30",
+  "snapshot_as_of": {
+    "captured_at": "2026-11-10T23:10:39.3113072Z",
+    "delayed": true
+  }
+}
