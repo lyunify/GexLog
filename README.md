@@ -27,6 +27,8 @@ GexLog records these levels every trading day so I can later compare them agains
 
 ## Setup
 
+Requires Python 3.11 or newer.
+
 ```bash
 git clone https://github.com/lyunify/GexLog.git
 cd GexLog

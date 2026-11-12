@@ -1,6 +1,6 @@
 import csv
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import requests
@@ -20,6 +20,8 @@ FIELDS = [
     "gamma_flip", "call_wall", "put_wall", "net_gex",
     "regime", "atm_iv", "vix",
 ]
+
+MAX_AGE = timedelta(days=4)
 
 
 def fetch_summary(symbol):
@@ -53,6 +55,27 @@ def parse_summary(data):
     }
 
 
+def last_saved_as_of(path):
+    if not path.exists():
+        return None
+    with open(path, newline="") as f:
+        rows = list(csv.DictReader(f))
+    if not rows:
+        return None
+    return datetime.fromisoformat(rows[-1]["as_of"])
+
+
+def check_freshness(row, path):
+    as_of = datetime.fromisoformat(row["as_of"])
+    age = datetime.now(timezone.utc) - as_of
+    if age > MAX_AGE:
+        raise RuntimeError(f"Data too old: as_of={row['as_of']}, age={age}")
+
+    last = last_saved_as_of(path)
+    if last is not None and as_of <= last:
+        raise RuntimeError(f"No new data since last run: as_of={row['as_of']}")
+
+
 def append_row(row, path):
     path.parent.mkdir(parents=True, exist_ok=True)
     is_new_file = not path.exists()
@@ -66,5 +89,6 @@ def append_row(row, path):
 if __name__ == "__main__":
     data = fetch_summary(SYMBOL)
     row = parse_summary(data)
+    check_freshness(row, CSV_PATH)
     append_row(row, CSV_PATH)
     print("Saved:", row)
