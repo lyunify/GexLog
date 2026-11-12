@@ -20,9 +20,9 @@ GexLog records these levels every trading day so I can later compare them agains
 
 ## How It Works (v1)
 
-1. `fetch_levels.py` calls the FlashAlpha summary endpoint for SPY.
-2. The raw response is saved as JSON for development and testing.
-3. *(In progress)* Selected fields are appended to a daily CSV.
+1. `flashalpha/fetch_levels.py` calls the FlashAlpha summary endpoint for SPY.
+2. Key fields (price, gamma flip, call/put walls, net GEX, regime, IV, VIX) are parsed from the response.
+3. Each run appends one row to `data/flashalpha_spy.csv`.
 4. *(Planned)* The script runs automatically every trading day.
 
 ## Setup
@@ -35,22 +35,30 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+Create a `.env` file in the project root with your free [FlashAlpha](https://flashalpha.com) API key:
+
+```
+FLASHALPHA_API_KEY=your_key_here
+```
+
 ## Usage
 
 ```bash
-python fetch_levels.py
+python flashalpha/fetch_levels.py
 ```
 
 ## Data Source and Limitations
 
-- Data comes from [FlashAlpha](https://flashalpha.com) via the public `/v1/stock/{symbol}/summary` endpoint, which does not require an API key.
+- Data comes from [FlashAlpha](https://flashalpha.com) via the `/v1/stock/{symbol}/summary` endpoint.
+- Requests without an API key return data delayed by one trading day, so the script always sends a key. Each run uses 1 of the free tier's 5 daily requests.
 - FlashAlpha's free tier does not include index or ETF data on its key-levels endpoint, so v1 uses the summary endpoint for SPY.
 - SPY is used as a proxy for SPX. Multiplying SPY levels by about 10 gives a rough SPX equivalent, but the two have different options positioning, so the mapping is approximate.
 
 ## Roadmap
 
 - [x] Fetch SPY GEX summary from FlashAlpha
-- [ ] Parse key fields and append to CSV
+- [x] Parse key fields and append to CSV
+- [ ] Validate data freshness before saving
 - [ ] Schedule daily runs
 - [ ] Compare logged levels with my own trade history
 - [ ] v2: compute SPX GEX directly from Schwab option chain data
