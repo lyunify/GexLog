@@ -1,2 +1,3 @@
 fetched_at,as_of,spy_price,spx_price,gamma_flip,call_wall,put_wall,net_gex,regime,atm_iv,vix
 2026-11-12T01:48:55+00:00,2026-11-12T01:00:00.308Z,756.36,7619.38,757.7,760,750,-4841129006,negative_gamma,14.88,17.49
+2026-11-13T20:07:50+00:00,2026-11-13T20:07:49.383Z,753.5,7555.87,762.7,775,750,-11799394609,negative_gamma,15.7,19
